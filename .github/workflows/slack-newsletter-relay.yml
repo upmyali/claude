@@ -1,0 +1,30 @@
+name: Slack Newsletter Relay
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: Message body to POST to the Slack webhook
+        required: true
+        type: string
+
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    steps:
+      - name: POST to Slack webhook
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_NEWSLETTER_WEBHOOK }}
+          MESSAGE: ${{ inputs.message }}
+        run: |
+          if [ -z "$SLACK_WEBHOOK_URL" ]; then
+            echo "SLACK_NEWSLETTER_WEBHOOK secret is not set" >&2
+            exit 1
+          fi
+          payload=$(jq -cn --arg text "$MESSAGE" '{text: $text}')
+          http_code=$(curl -sS -o /tmp/resp -w '%{http_code}' \
+            -X POST -H 'Content-Type: application/json' \
+            --data "$payload" "$SLACK_WEBHOOK_URL")
+          echo "HTTP $http_code"
+          cat /tmp/resp
+          [ "$http_code" = "200" ]
