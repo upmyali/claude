@@ -1,0 +1,83 @@
+{
+  "Must-Watch Environmental Movies for Earth Day": {
+    "anchor_y": 400,
+    "best": {
+      "tag": "table",
+      "y": 320,
+      "h": 94,
+      "w": 642
+    }
+  },
+  "Americas (show)": {
+    "anchor_y": 1750,
+    "best": {
+      "tag": "tr",
+      "y": 1744,
+      "h": 256,
+      "w": 602
+    }
+  },
+  "Chasing Coral (movie)": {
+    "anchor_y": 526,
+    "best": {
+      "tag": "tr",
+      "y": 520,
+      "h": 213,
+      "w": 602
+    }
+  },
+  "Pix Media Homepage": {
+    "anchor_y": 91,
+    "best": {
+      "tag": "tbody",
+      "y": 25,
+      "h": 3400,
+      "w": 642
+    }
+  },
+  "Mother Nature Docuseries": {
+    "anchor_y": 1546,
+    "best": {
+      "tag": "tr",
+      "y": 1502,
+      "h": 104,
+      "w": 602
+    }
+  },
+  "11 Podcasts to Listen to On Earth Day": {
+    "anchor_y": 2861,
+    "best": {
+      "tag": "td",
+      "y": 2797,
+      "h": 114,
+      "w": 642
+    }
+  },
+  "How to Save a Planet (podcast)": {
+    "anchor_y": 3047,
+    "best": {
+      "tag": "tr",
+      "y": 3041,
+      "h": 232,
+      "w": 602
+    }
+  },
+  "Likewise (Facebook) - Sponsored": {
+    "anchor_y": 3432,
+    "best": {
+      "tag": "tbody",
+      "y": 3425,
+      "h": 337,
+      "w": 642
+    }
+  },
+  "Pix Media Newsletter": {
+    "anchor_y": 3594,
+    "best": {
+      "tag": "tbody",
+      "y": 3425,
+      "h": 337,
+      "w": 642
+    }
+  }
+}
