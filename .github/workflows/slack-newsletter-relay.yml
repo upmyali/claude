@@ -2,14 +2,14 @@ name: Slack Newsletter Relay
 
 on:
   issues:
-    types: [opened, labeled]
+    types: [labeled]
 
 permissions:
   issues: write
 
 jobs:
   relay:
-    if: contains(github.event.issue.labels.*.name, 'slack-relay')
+    if: github.event.label.name == 'slack-relay'
     runs-on: ubuntu-latest
     steps:
       - name: POST to Slack webhook
