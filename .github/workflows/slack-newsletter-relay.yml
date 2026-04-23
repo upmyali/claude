@@ -1,21 +1,21 @@
 name: Slack Newsletter Relay
 
 on:
-  workflow_dispatch:
-    inputs:
-      message:
-        description: Message body to POST to the Slack webhook
-        required: true
-        type: string
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  issues: write
 
 jobs:
   relay:
+    if: contains(github.event.issue.labels.*.name, 'slack-relay')
     runs-on: ubuntu-latest
     steps:
       - name: POST to Slack webhook
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_NEWSLETTER_WEBHOOK }}
-          MESSAGE: ${{ inputs.message }}
+          MESSAGE: ${{ github.event.issue.body }}
         run: |
           if [ -z "$SLACK_WEBHOOK_URL" ]; then
             echo "SLACK_NEWSLETTER_WEBHOOK secret is not set" >&2
@@ -28,3 +28,11 @@ jobs:
           echo "HTTP $http_code"
           cat /tmp/resp
           [ "$http_code" = "200" ]
+
+      - name: Close issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue close "${{ github.event.issue.number }}" \
+            --repo "${{ github.repository }}" \
+            --comment "Relayed to Slack."
